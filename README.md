@@ -1,44 +1,45 @@
-# case-autoU
-📧 Email Classifier Demo
+# Email Classifier & Auto-Responder - Demo
 
-Aplicação web simples que utiliza Inteligência Artificial para classificar emails em Produtivos ou Improdutivos, além de sugerir uma resposta automática adequada.
+This is a demo Flask application that classifies emails as **Produtivo** or **Improdutivo** and suggests automatic replies.
+It is built as a simplified proof-of-concept for a financial company challenge.
 
-O projeto foi desenvolvido em Python + Flask, com técnicas de Processamento de Linguagem Natural (NLP) para pré-processamento de texto e integração opcional com OpenAI GPT para gerar respostas mais avançadas.
+## Files in this package
+- `app.py` — Flask app with UI and classifier
+- `requirements.txt` — Python dependencies
+- `Procfile` — for Heroku deployment (optional)
+- `sample_email.txt` — example file to test upload
+- `README.md` — this file
 
-🎯 Objetivo
+## Run locally (recommended)
+1. Create a virtual environment and activate it:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # Linux / macOS
+   venv\Scripts\activate    # Windows (PowerShell)
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the app:
+   ```bash
+   python app.py
+   ```
+4. Open http://127.0.0.1:5000 in your browser.
 
-Automatizar a leitura e classificação de emails.
+## OpenAI (optional)
+If you want nicer generated replies using OpenAI, set the environment variable:
+```bash
+export OPENAI_API_KEY="your_key_here"    # Linux / macOS
+setx OPENAI_API_KEY "your_key_here"      # Windows (restart required)
+```
+The app will attempt to use `gpt-4o-mini` for reply generation; if the key is not present a built-in template is used.
 
-Identificar se o email exige ação (Produtivo) ou não (Improdutivo).
+## Deploying
+- **Heroku**: create a Heroku app, push the repo, and ensure `Procfile` is present.
+- **Google Cloud Run**: create a Dockerfile and deploy the container.
+- **Vercel**: use serverless functions or a Python server.
 
-Sugerir respostas automáticas para cada caso.
-
-Reduzir o tempo da equipe em tarefas manuais repetitivas.
-
-🖥️ Interface Web
-
-A interface web permite:
-
-Upload de arquivos .txt ou .pdf contendo emails.
-
-Inserção manual de texto de emails.
-
-Visualização da categoria atribuída (Produtivo / Improdutivo).
-
-Exibição da resposta automática sugerida.
-
-⚙️ Tecnologias Utilizadas
-
-Python 3.9+
-
-Flask (servidor web)
-
-NLTK (pré-processamento NLP)
-
-scikit-learn (classificação simples via TF-IDF + Logistic Regression)
-
-pdfplumber (extração de texto de PDFs)
-
-OpenAI API (opcional) para respostas automáticas avançadas
-
-Bootstrap para estilização simples do frontend
+## Notes
+- This is a demo. For production, train on real labeled email data, add authentication, logging, monitoring and robust error handling.
+- PDF extraction quality depends on how the PDF is generated (text vs images).
